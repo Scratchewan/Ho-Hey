@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 import os
 
@@ -6,12 +6,16 @@ application = Flask(__name__)
 
 cors = CORS(application, resourse={r"/*":{"origins":"*"}})
 
+# @application.route("/", methods=['GET'])
+# def index():
+#     # return "<h1>Hello there</h1>"
+#     with open('patter.html', 'r') as file:
+#         string = file.read()
+#     return string
+
 @application.route("/", methods=['GET'])
 def index():
-    # return "<h1>Hello there</h1>"
-    with open('patter.html', 'r') as file:
-        string = file.read()
-    return string
+    return render_template('patter.html')
 
 @application.route("/about", methods=['GET'])
 def about():
