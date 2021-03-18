@@ -8,11 +8,14 @@ cors = CORS(application, resourse={r"/*":{"origins":"*"}})
 
 @application.route("/", methods=['GET'])
 def index():
-    return "<h1>Hello there</h1>"
+    # return "<h1>Hello there</h1>"
+    with open('patter.html', 'r') as file:
+        string = file.read()
+    return string
 
-@application.route("/new-test-route", methods=['GET'])
-def deploy():
-    return "<h1>New test route</h1>"
+@application.route("/about", methods=['GET'])
+def about():
+    return "<h1>About</h1>"
 
 def main():
     port = int(os.environ.get("PORT", 5000))
