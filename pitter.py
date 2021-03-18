@@ -10,6 +10,10 @@ cors = CORS(application, resourse={r"/*":{"origins":"*"}})
 def index():
     return "<h1>Hello there</h1>"
 
+@application.route("/new-test-route", methods=['GET'])
+def deploy():
+    return "<h1>New test route</h1>"
+
 def main():
     port = int(os.environ.get("PORT", 5000))
     application.run(host="0.0.0.0", port=port)
