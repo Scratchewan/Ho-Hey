@@ -2,10 +2,40 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_cors import CORS
 import os
 from datetime import timedelta
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+from flask_login import LoginManager, UserMixin
+from os import path
+
+database = SQLAlchemy()
+DB_NAME = "database.db"
 
 application = Flask(__name__)
 application.secret_key = "cute"
 application.permanent_session_lifetime = timedelta(days=5)
+
+application.config['SECRET_KEY'] = 'cute'
+application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+database.init_app(application)
+
+def create_database(application):
+    if not path.exists('website/' + DB_NAME):
+        database.create_all(application=application)
+
+create_database(application)
+
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.init_app(application)
+
+class User(database.Model, UserMixin):
+    id = database.Column(database.Integer, primary_key=True)
+    password = database.Column(database.String(255))
+    first_name = database.Column(database.String(255))
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 cors = CORS(application, resourse={r"/*":{"origins":"*"}})
 
