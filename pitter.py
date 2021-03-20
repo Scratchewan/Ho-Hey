@@ -10,9 +10,9 @@
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy import *
 
-import __init__
+from HoHey import create_app
 
-application = __init__.create_app()
+application = create_app()
 
 if __name__ == '__main__':
     application.run(debug=True)
