@@ -4,7 +4,7 @@ from os import path
 import os
 from flask_login import LoginManager
 
-ENV = 'dev'
+ENV = 'prod'
 
 database = SQLAlchemy()
 DB_NAME = "database.db"
