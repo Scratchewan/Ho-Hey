@@ -22,7 +22,7 @@ def create_app():
 
     application.config['SECRET_KEY'] = 'cute'
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    database.init_app(application)
+    # database.init_app(application)
 
     from .views import views
     from .auth import auth
@@ -32,7 +32,7 @@ def create_app():
 
     from .models import User, Note
 
-    # database.create_all(app=application)
+    database.create_all(app=application)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
