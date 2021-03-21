@@ -6,7 +6,8 @@ from flask_login import LoginManager
 
 ENV = 'prod'
 
-database = SQLAlchemy()
+application = Flask(__name__)
+database = SQLAlchemy(application)
 DB_NAME = "database.db"
 
 def create_app():
