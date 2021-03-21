@@ -39,6 +39,8 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
+        # if database.session.query(User).filter(User.email == email).count() == 0:
+
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')

@@ -1,1 +1,1 @@
-web: python pitter.py
+web: gunicorn app:pitter.py
