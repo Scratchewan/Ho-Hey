@@ -4,7 +4,7 @@ from os import path
 import os
 from flask_login import LoginManager
 
-ENV = 'prod'
+ENV = 'dev'
 
 database = SQLAlchemy()
 DB_NAME = "database.db"
@@ -22,7 +22,7 @@ def create_app():
 
     application.config['SECRET_KEY'] = 'cute'
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # database.init_app(application)
+    database.init_app(application)
 
     from .views import views
     from .auth import auth
