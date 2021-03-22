@@ -1,1 +1,1 @@
-web: python pitter.py
+worker: python pitter.py
