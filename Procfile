@@ -1,1 +1,1 @@
-web: python pitter.py
+app: python pitter.py
