@@ -130,4 +130,4 @@ dmypy.json
 
 .vscode
 HeyHo/__pycache__
-HeyHo/database.db
+# HeyHo/database.db
