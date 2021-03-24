@@ -7,8 +7,13 @@ name = "pypi"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Login = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+sqlalchemy-redshift = "*"
+gunicorn = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.7"
