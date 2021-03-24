@@ -1,1 +1,1 @@
-web: gunicorn pitter:app
+web: gunicorn pitter:application
