@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 sqlalchemy-redshift = "*"
 gunicorn = "*"
 sqlalchemy = "*"
+flask-mail = "*"
 
 [dev-packages]
 
