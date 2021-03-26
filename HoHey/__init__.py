@@ -28,7 +28,7 @@ def create_app():
     from .models import User, Note
 
     # if not path.exists('HoHey/' + DB_NAME):
-    database.create_all(app=application)
+    #     database.create_all(app=application)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
