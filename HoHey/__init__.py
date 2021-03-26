@@ -13,8 +13,8 @@ def create_app():
     application.config['SECRET_KEY'] = 'cute'
 
     # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/Ho Hey'
-    application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ktjdyajigzjswv:ee6a1dfae558349472a7d3501cc77ea21b8a58fbb4d15ba19f8d6d7a1241e770@ec2-34-195-233-155.compute-1.amazonaws.com:5432/d371j372uho6t8'
+    # application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    application.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://elqleapqbfkcsb:02471740e9f3900006d8010e9ac3835cbca0855abf8851d6016fa41230364f84@ec2-52-45-73-150.compute-1.amazonaws.com:5432/dch8gpsf54f4m9'
     
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     database.init_app(application)
@@ -27,8 +27,8 @@ def create_app():
 
     from .models import User, Note
 
-    if not path.exists('HoHey/' + DB_NAME):
-        database.create_all(app=application)
+    # if not path.exists('HoHey/' + DB_NAME):
+    #     database.create_all(app=application)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
