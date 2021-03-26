@@ -1,5 +1,5 @@
 from flask import app
-from HoHey import create_app
+from flaskr import create_app
 
 application = create_app()
 

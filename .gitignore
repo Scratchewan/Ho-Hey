@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 .vscode
-HeyHo/__pycache__
-HeyHo/database.db
+flaskr/__pycache__
+flaskr/database.db
