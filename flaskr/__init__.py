@@ -7,6 +7,7 @@ from flask_login import LoginManager
 database = SQLAlchemy()
 DB_NAME = "database.db"
 
+
 def create_app():
     application = Flask(__name__)
 
@@ -15,7 +16,7 @@ def create_app():
     # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/Ho Hey'
     # application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://elqleapqbfkcsb:02471740e9f3900006d8010e9ac3835cbca0855abf8851d6016fa41230364f84@ec2-52-45-73-150.compute-1.amazonaws.com:5432/dch8gpsf54f4m9'
-    
+
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     database.init_app(application)
 
@@ -37,5 +38,5 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
-    
+
     return application
