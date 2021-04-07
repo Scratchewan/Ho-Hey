@@ -13,6 +13,9 @@ sqlalchemy-redshift = "*"
 gunicorn = "*"
 sqlalchemy = "*"
 flask-mail = "*"
+tensorflow = "~=1.13.1"
+opencv-python = "*"
+keras = "==2.2.4"
 
 [dev-packages]
 autopep8 = "*"
