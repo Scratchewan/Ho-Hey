@@ -3,8 +3,8 @@ from flask_login import login_required, current_user
 from .models import Note
 from . import database
 import json
-# import numpy as np
-# import cv2
+import numpy as np
+import cv2
 import base64
 import tensorflow as tf
 import pickle
@@ -68,14 +68,14 @@ def predict():
             final_pred = None
             draw = request.form['url']
             draw = draw[init_Base64:]
-            # draw_decoded = base64.b64decode(draw)
-            # image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-            # image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
-            # resized = cv2.resize(image, (28, 28), interpolation=cv2.INTER_AREA)
-            # vect = np.asarray(resized, dtype="uint8")
-            # vect = vect.reshape(1, 1, 28, 28).astype('float32')
-            # my_prediction = model.predict(vect)
-            # index = np.argmax(my_prediction[0])
-            # final_pred = label_dict[index]
+            draw_decoded = base64.b64decode(draw)
+            image = np.asarray(bytearray(draw_decoded), dtype="uint8")
+            image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
+            resized = cv2.resize(image, (28, 28), interpolation=cv2.INTER_AREA)
+            vect = np.asarray(resized, dtype="uint8")
+            vect = vect.reshape(1, 1, 28, 28).astype('float32')
+            my_prediction = model.predict(vect)
+            index = np.argmax(my_prediction[0])
+            final_pred = label_dict[index]
 
     return render_template('results.html', prediction=final_pred)
