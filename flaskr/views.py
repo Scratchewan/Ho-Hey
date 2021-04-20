@@ -15,7 +15,7 @@ init_Base64 = 21
 label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
-with open(f'model_cnn.pkl', 'rb') as f:
+with open(f'Ho-Hey\flaskr\model_cnn.pkl', 'rb') as f:
     model = pickle.load(f)
 
 
