@@ -16,7 +16,15 @@ init_Base64 = 21
 label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
-with open('/app/flaskr/model_cnn.pkl', 'rb') as f:
+
+enviroment = 'production'
+
+if enviroment == 'development':
+    path = f'flaskr\model_cnn.pkl'
+elif enviroment == 'production':
+    path = f'/app/flaskr/model_cnn.pkl'
+
+with open(path, 'rb') as f:
     model = pickle.load(f)
 
 
