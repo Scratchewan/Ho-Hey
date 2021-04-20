@@ -10,18 +10,13 @@ import tensorflow as tf
 import pickle
 import os
 
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_DIR = os.path.join(FILE_DIR, os.pardir)
-
-dir_of_interest = os.path.join(PARENT_DIR, 'model_cnn.pkl')
-
 views = Blueprint('views', __name__)
 
 init_Base64 = 21
 label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
-with open(dir_of_interest, 'rb') as f:
+with open('/app/flaskr/model_cnn.pkl', 'rb') as f:
     model = pickle.load(f)
 
 
