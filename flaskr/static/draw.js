@@ -6,15 +6,9 @@ var clickDrag = new Array();
 var paint = false;
 var curColor = "#FF5733";
 
-
-/**
-    - Preparing the Canvas : Basic functions
-**/
 function drawCanvas() {
-
     canvas = document.getElementById('canvas');
     context = document.getElementById('canvas').getContext("2d");
-
     $('#canvas').mousedown(function (e) {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
@@ -23,35 +17,25 @@ function drawCanvas() {
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
         redraw();
     });
-
     $('#canvas').mousemove(function (e) {
         if (paint) {
             addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
             redraw();
         }
     });
-
     $('#canvas').mouseup(function (e) {
         paint = false;
     });
 }
 
-/**
-    - Saves the click postition
-
-**/
 function addClick(x, y, dragging) {
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
 }
 
-/**
-    - Clear the canvas and redraw
-**/
 function redraw() {
-
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     context.strokeStyle = curColor;
     context.lineJoin = "round";
     context.lineWidth = 3;
@@ -68,15 +52,10 @@ function redraw() {
     }
 }
 
-/**
-    - Encodes the image into a base 64 string.
-    - Add the string to an hidden tag of the form so Flask can reach it.
-**/
 function save() {
     var image = new Image();
     var url = document.getElementById('url');
     image.id = "pic";
     image.src = canvas.toDataURL();
     url.value = image.src;
-
 }

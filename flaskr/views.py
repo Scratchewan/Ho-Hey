@@ -31,17 +31,6 @@ with open(path, 'rb') as f:
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        note = request.form.get('note')
-
-        if len(note) < 1:
-            flash('Note is too short!', category='error')
-        else:
-            new_note = Note(data=note, user_id=current_user.id)
-            database.session.add(new_note)
-            database.session.commit()
-            flash('Note added!', category='success')
-
     return render_template("home.html", user=current_user)
 
 
@@ -56,16 +45,6 @@ def delete_note():
             database.session.commit()
 
     return jsonify({})
-
-
-@views.route('/pen')
-def pen():
-    return render_template("pen.html", user=current_user)
-
-
-@views.route('/draw')
-def draw():
-    return render_template('draw.html')
 
 
 @views.route('/predict', methods=['POST'])
@@ -86,4 +65,4 @@ def predict():
             index = np.argmax(my_prediction[0])
             final_pred = label_dict[index]
 
-    return render_template('results.html', prediction=final_pred)
+    return render_template('results.html', prediction=final_pred, user=current_user)
