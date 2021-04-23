@@ -9,7 +9,7 @@ import base64
 import tensorflow as tf
 import pickle
 import os
-from PIL import Image
+# from PIL import Image
 
 views = Blueprint('views', __name__)
 
@@ -18,7 +18,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'development'
+enviroment = 'production'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
@@ -98,8 +98,8 @@ def grading():
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
             image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
-            img = Image.fromarray(image)
-            img.show()
+            # img = Image.fromarray(image)
+            # img.show()
 
     return render_template('grading.html', grading='Hi there', user=current_user)
 
