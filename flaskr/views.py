@@ -142,7 +142,7 @@ def save():
             draw = draw[init_Base64:]
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-            image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
+            # image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
             # img = Image.fromarray(image)
             # img.show()
 
@@ -158,4 +158,6 @@ def save():
             message = "O polvo foi salvo!"
         elif request.form.get('dict') == "camelo":
             message = "O camelo foi salvo!"
-    return render_template('save.html', user=current_user, message=message)
+        elif request.form.get('dict') == "desenho":
+            message = "O desenho foi salvo!"
+    return render_template('save.html', message=message, user=current_user)
