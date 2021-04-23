@@ -10,6 +10,7 @@ import tensorflow as tf
 import pickle
 import os
 # from PIL import Image
+import pandas as pd
 
 views = Blueprint('views', __name__)
 
@@ -18,7 +19,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'production'
+enviroment = 'development'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
@@ -97,17 +98,54 @@ def grading():
             draw = draw[init_Base64:]
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-            image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
-            # img = Image.fromarray(image)
-            # img.show()
+            image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
+            resized = cv2.resize(image, (28, 28), interpolation=cv2.INTER_AREA)
+            vect = np.asarray(resized, dtype="uint8")
+            vect = vect.reshape(1, 1, 28, 28).astype('float32')
+            my_prediction = model.predict(vect)
+            df = pd.DataFrame(my_prediction)
 
-    return render_template('grading.html', grading='Hi there', user=current_user)
+            dict = request.form.get('dict')
+            if dict == "gato":
+                index = 0
+                pronoun = 'Seu'
+            elif dict == "girafa":
+                index = 1
+                pronoun = 'Sua'
+            elif dict == "ovelha":
+                index = 2
+                pronoun = 'Sua'
+            elif dict == "morcego":
+                index = 3
+                pronoun = 'Seu'
+            elif dict == "polvo":
+                index = 4
+                pronoun = 'Seu'
+            elif dict == "camelo":
+                index = 5
+                pronoun = 'Seu'
+
+            value = df[index].values[0]
+            grading = int(value * 10)
+            message = pronoun + ' ' + dict + \
+                ' ficou  nota ' + str(grading) + '!'
+    return render_template('grading.html', message=message, user=current_user)
 
 
 @views.route('/save', methods=['POST'])
 def save():
+    global graph
+    with graph.as_default():
+        if request.method == 'POST':
+            final_pred = None
+            draw = request.form['url']
+            draw = draw[init_Base64:]
+            draw_decoded = base64.b64decode(draw)
+            image = np.asarray(bytearray(draw_decoded), dtype="uint8")
+            image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
+            # img = Image.fromarray(image)
+            # img.show()
 
-    if request.method == 'POST':
         if request.form.get('dict') == "gato":
             message = "O gato foi salvo!"
         elif request.form.get('dict') == "girafa":
