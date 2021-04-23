@@ -17,13 +17,12 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash('Incorrect password, try again.', category='error')
+                flash('Senha incorreta, tente novamente.', category='error')
         else:
-            flash('Email does not exist.', category='error')
+            flash('E-mail não inscrito.', category='error')
 
     return render_template("auth/login.html", user=current_user)
 
@@ -47,22 +46,21 @@ def register():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('Email already exists.', category='error')
+            flash('E-mail já inscrito.', category='error')
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters.', category='error')
+            flash('O e-mail deve ter mais de 3 caracteres.', category='error')
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
+            flash('O nome deve ter mais de 1 caractere.', category='error')
         elif password1 != password2:
-            flash('Passwords don\'t match.', category='error')
+            flash('As senhas não coincidem.', category='error')
         elif len(password1) < 7:
-            flash('Password must be at least 7 characters.', category='error')
+            flash('A senha deve ter pelo menos 7 caracteres.', category='error')
         else:
             new_user = User(email=email, first_name=first_name,
                             password=generate_password_hash(password1, method='sha256'))
             database.session.add(new_user)
             database.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
             return redirect(url_for('views.home'))
 
     return render_template("auth/register.html", user=current_user)

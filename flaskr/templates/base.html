@@ -42,30 +42,35 @@
         </div>
     </div>
 
-    <!-- {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in
-    messages %} {% if category == 'error' %}
-    <div class="alert alert-danger alter-dismissable fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% else %}
-    <div class="alert alert-success alter-dismissable fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endif %} {% endfor %} {% endif %} {% endwith %} -->
-
     {% block content %}{% endblock %}
+
+    <div class="w3-content w3-padding" style="max-width:1564px">
+        <div class="w3-container">
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message
+            in
+            messages %} {% if category == 'error' %}
+            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success alter-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %} {% endfor %} {% endif %} {% endwith %}
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="w3-center w3-black w3-padding-16">
         <p>Distribuído pelo Grupo de Pesquisa e Desenvolvimento de Jogos do <a
-                href="https://www.udc.edu.br/site/#/udc/instituicao/1" target="_blank"
-                class="w3-hover-text-blue">Centro Universitário Dinâmica das Cataratas</a></p>
+                href="https://www.udc.edu.br/site/#/udc/instituicao/1" target="_blank" class="w3-hover-text-blue">Centro
+                Universitário Dinâmica das Cataratas</a></p>
     </footer>
 
 </body>
