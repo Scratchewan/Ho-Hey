@@ -5,6 +5,18 @@ html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 html,body{width:100%;height:100%;}
 canvas{display:block;}
 
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #000;
+}
+
+canvas {
+    cursor: crosshair;
+}
+
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
 article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}summary{display:list-item}
 audio,progress,video{display:inline-block}progress{vertical-align:baseline}
@@ -28,7 +40,7 @@ legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}t
 [type=search]::-webkit-search-decoration{-webkit-appearance:none}
 ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 /* End extract */
-html,body{font-family:Courier;font-size:21px;line-height:1.5}html{overflow-x:hidden}
+html,body{font-family:Courier;font-size:23px;line-height:1.5}html{overflow-x:hidden}
 h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
 .w3-serif{font-family:Courier}.w3-sans-serif{font-family:Courier}.w3-cursive{font-family:Courier}.w3-monospace{font-family:Courier}
 h1,h2,h3,h4,h5,h6{font-family:Courier;font-weight:400;margin:10px 0}.w3-wide{letter-spacing:4px}
