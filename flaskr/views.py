@@ -104,7 +104,6 @@ def grading():
             vect = vect.reshape(1, 1, 28, 28).astype('float32')
             my_prediction = model.predict(vect)
             df = pd.DataFrame(my_prediction)
-
             dict = request.form.get('dict')
             if dict == "gato":
                 index = 0
@@ -124,12 +123,11 @@ def grading():
             elif dict == "camelo":
                 index = 5
                 pronoun = 'Seu'
-
             value = df[index].values[0]
             grading = int(value * 10)
             message = pronoun + ' ' + dict + \
                 ' ficou  nota ' + str(grading) + '!'
-    return render_template('grading.html', message=message, user=current_user)
+    return render_template('grading.html', dict=dict, message=message, user=current_user)
 
 
 @views.route('/save', methods=['POST'])
@@ -146,18 +144,21 @@ def save():
             # img = Image.fromarray(image)
             # img.show()
 
-        if request.form.get('dict') == "gato":
+        dict = request.form.get('dict')
+        global message
+        message = ""
+        if dict == "gato":
             message = "O gato foi salvo!"
-        elif request.form.get('dict') == "girafa":
+        elif dict == "girafa":
             message = "A girafa foi salva!"
-        elif request.form.get('dict') == "ovelha":
+        elif dict == "ovelha":
             message = "A ovelha foi salva!"
-        elif request.form.get('dict') == "morcego":
+        elif dict == "morcego":
             message = "O morcego foi salvo!"
-        elif request.form.get('dict') == "polvo":
+        elif dict == "polvo":
             message = "O polvo foi salvo!"
-        elif request.form.get('dict') == "camelo":
+        elif dict == "camelo":
             message = "O camelo foi salvo!"
-        elif request.form.get('dict') == "desenho":
+        elif dict == "desenho":
             message = "O desenho foi salvo!"
-    return render_template('save.html', message=message, user=current_user)
+    return render_template('save.html', dict=dict, message=message, user=current_user)
