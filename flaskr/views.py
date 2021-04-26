@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, Response
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Note, Img
 from . import database
 import json
 import numpy as np
@@ -11,6 +11,7 @@ import pickle
 import os
 from PIL import Image
 import pandas as pd
+from werkzeug.utils import secure_filename
 
 views = Blueprint('views', __name__)
 
@@ -19,7 +20,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'production'
+enviroment = 'development'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
@@ -56,6 +57,7 @@ def predict():
         if request.method == 'POST':
             final_pred = None
             draw = request.form['url']
+            drawing = draw
             draw = draw[init_Base64:]
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
@@ -78,7 +80,7 @@ def predict():
             index = np.argmax(my_prediction[0])
             final_pred = label_dict[index]
 
-    return render_template('results.html', prediction=final_pred, user=current_user)
+    return render_template('results.html', prediction=final_pred, drawing=drawing, user=current_user)
 
 
 @views.route('/draw', methods=['POST'])
@@ -104,8 +106,8 @@ def grading():
     global graph
     with graph.as_default():
         if request.method == 'POST':
-            final_pred = None
             draw = request.form['url']
+            drawing = draw
             draw = draw[init_Base64:]
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
@@ -149,7 +151,7 @@ def grading():
             grading = int(value * 10)
             message = pronoun + ' ' + dict + \
                 ' ficou  nota ' + str(grading) + '!'
-    return render_template('grading.html', dict=dict, message=message, user=current_user)
+    return render_template('grading.html', dict=dict, message=message, drawing=drawing, user=current_user)
 
 
 @views.route('/save', methods=['POST'])
@@ -157,30 +159,59 @@ def save():
     global graph
     with graph.as_default():
         if request.method == 'POST':
-            final_pred = None
-            draw = request.form['url']
-            draw = draw[init_Base64:]
-            draw_decoded = base64.b64decode(draw)
-            image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-            # image = cv2.imdecode(image, cv2.IMREAD_UNCHANGED)
-            # img = Image.fromarray(image)
-            # img.show()
+            global message
+            final_pred = request.form.get('prediction')
+            message = request.form.get('message')
+            dict = request.form.get('dict')
+            drawing = request.form['drawing']
 
-        dict = request.form.get('dict')
-        global message
-        message = ""
-        if dict == "gato":
-            message = "O gato foi salvo!"
-        elif dict == "girafa":
-            message = "A girafa foi salva!"
-        elif dict == "ovelha":
-            message = "A ovelha foi salva!"
-        elif dict == "morcego":
-            message = "O morcego foi salvo!"
-        elif dict == "polvo":
-            message = "O polvo foi salvo!"
-        elif dict == "camelo":
-            message = "O camelo foi salvo!"
-        elif dict == "desenho":
-            message = "O desenho foi salvo!"
-    return render_template('save.html', dict=dict, message=message, user=current_user)
+            # pic = Image.fromarray(image)
+            # if not pic:
+            #     return 'No pic uploaded!', 400
+
+            # filename = secure_filename(pic.filename)
+            # mimetype = pic.mimetype
+            # if not filename or not mimetype:
+            #     return 'Bad upload!', 400
+
+            # img = Img(img=pic.read(), name=filename,
+            #           mimetype=mimetype, user_id=current_user.id)
+            # database.session.add(img)
+            # database.session.commit()
+
+            if dict == "gato":
+                flash('O gato foi salvo!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            elif dict == "girafa":
+                flash('A girafa foi salva!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            elif dict == "ovelha":
+                flash('A ovelha foi salva!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            elif dict == "morcego":
+                flash('O morcego foi salvo!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            elif dict == "polvo":
+                flash('O polvo foi salvo!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            elif dict == "camelo":
+                flash('O camelo foi salvo!', category='success')
+                return render_template('grading.html', dict=dict,
+                                       message=message, drawing=drawing, user=current_user)
+            else:
+                flash('O desenho foi salvo!', category='success')
+    return render_template('results.html', prediction=final_pred, drawing=drawing, user=current_user)
+
+
+@views.route('/<int:id>')
+def get_img(id):
+    img = Img.query.filter_by(id=id).first()
+    if not img:
+        return 'Img Not Found!', 404
+
+    return Response(img.img, mimetype=img.mimetype)

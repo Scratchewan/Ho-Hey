@@ -2,10 +2,7 @@
 {% block title %}Desenhar {{ dict }} – {% endblock %}
 
 {% block content %}
-
-<!-- Header -->
-<header class="w3-display-container w3-wide" style="max-width:1500px;" id="draw">
-
+<header class="w3-display-container w3-wide" style="max-width:1500px;">
     <form action="{{ url_for('views.grading') }}" method="POST" enctype="multipart/form-data">
         <canvas id="canvas">
             <script type="text/javascript">
@@ -26,13 +23,11 @@
             </script>
         </canvas>
     </form>
-
 </header>
 
-<!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
     <div class="w3-row-padding w3-grayscale">
-        <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.grading')}}" method="POST"
+        <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.grading') }}" method="POST"
             enctype="multipart/form-data">
             <input type="hidden" id='url' name="url" value="">
             <input type="hidden" name="dict" value="{{ dict }}">
@@ -41,16 +36,6 @@
                     onclick="return save();">
             </div>
         </form>
-        <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.save')}}" method="POST"
-            enctype="multipart/form-data">
-            <input type="hidden" id='url' name="url" value="">
-            <input type="hidden" name="dict" value="{{ dict }}">
-            <div>
-                <input class="w3-button w3-light-grey w3-block" type="submit" value="Salvar {{ dict }}"
-                    onclick="return save();">
-            </div>
-        </form>
     </div>
 </div>
-
 {% endblock %}
