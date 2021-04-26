@@ -20,7 +20,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'development'
+enviroment = 'production'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
@@ -165,7 +165,6 @@ def save():
             dict = request.form.get('dict')
             drawing = request.form['drawing']
 
-            # pic = Image.fromarray(image)
             # if not pic:
             #     return 'No pic uploaded!', 400
 
@@ -174,10 +173,10 @@ def save():
             # if not filename or not mimetype:
             #     return 'Bad upload!', 400
 
-            # img = Img(img=pic.read(), name=filename,
-            #           mimetype=mimetype, user_id=current_user.id)
-            # database.session.add(img)
-            # database.session.commit()
+            img = Img(img=drawing, name="Hi",
+                      mimetype="Hi", user_id=current_user.id)
+            database.session.add(img)
+            database.session.commit()
 
             if dict == "gato":
                 flash('O gato foi salvo!', category='success')

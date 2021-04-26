@@ -27,7 +27,7 @@ def create_app():
     application.register_blueprint(views, url_prefix='/')
     application.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Note
+    from .models import User, Note, Img
 
     # if not path.exists('flaskr/' + DB_NAME):
     #     database.create_all(app=application)
