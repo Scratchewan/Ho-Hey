@@ -14,9 +14,9 @@ def create_app():
     application.config['SECRET_KEY'] = 'cute'
 
     # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/Ho Hey'
-    # application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    application.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://elqleapqbfkcsb:02471740e9f3900006d8010e9ac3835cbca0855abf8851d6016fa41230364f84@ec2-52-45-73-150.compute-1.amazonaws.com:5432/dch8gpsf54f4m9'
-    application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wfcwxvgfguppru:a9fbe02fa53188c195227de6d8d219fb00c439c665758f389b551bb4a5f1b793@ec2-107-22-83-3.compute-1.amazonaws.com:5432/d1n54sk4v47kl3'
+    # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wfcwxvgfguppru:a9fbe02fa53188c195227de6d8d219fb00c439c665758f389b551bb4a5f1b793@ec2-107-22-83-3.compute-1.amazonaws.com:5432/d1n54sk4v47kl3'
 
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     database.init_app(application)
@@ -29,8 +29,8 @@ def create_app():
 
     from .models import User, Note, Img
 
-    # if not path.exists('flaskr/' + DB_NAME):
-    #     database.create_all(app=application)
+    if not path.exists('flaskr/' + DB_NAME):
+        database.create_all(app=application)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

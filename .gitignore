@@ -134,3 +134,4 @@ flaskr/database.db
 
 Pipfile
 Pipfile.lock
+database.py

@@ -34,7 +34,17 @@ with open(path, 'rb') as f:
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template("home.html", user=current_user)
+    if Img.query.filter_by(user_id=current_user.id).first():
+        # print(Img.query.filter_by(user_id=current_user.id))
+        # img = Img.query.filter_by(user_id=current_user.id)
+        # drawing = img.img
+        # drawing_name = img.name
+
+        img_list = Img.query.filter_by(user_id=current_user.id).all()
+
+        return render_template("home.html", img_list=img_list, user=current_user)
+    else:
+        return render_template("home.html", user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
@@ -164,6 +174,7 @@ def save():
             message = request.form.get('message')
             dict = request.form.get('dict')
             drawing = request.form['drawing']
+            drawing_name = request.form.get('drawing_name')
 
             # if not pic:
             #     return 'No pic uploaded!', 400
@@ -173,8 +184,8 @@ def save():
             # if not filename or not mimetype:
             #     return 'Bad upload!', 400
 
-            img = Img(img=drawing, name="Hi",
-                      mimetype="Hi", user_id=current_user.id)
+            img = Img(img=drawing,
+                      name=drawing_name, user_id=current_user.id)
             database.session.add(img)
             database.session.commit()
 
