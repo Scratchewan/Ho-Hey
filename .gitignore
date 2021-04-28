@@ -130,7 +130,7 @@ dmypy.json
 
 .vscode
 flaskr/__pycache__
-flaskr/database.db
+# flaskr/database.db
 
 Pipfile
 Pipfile.lock
