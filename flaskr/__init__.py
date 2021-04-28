@@ -29,8 +29,8 @@ def create_app():
 
     from .models import User, Note, Img
 
-    if not path.exists('flaskr/' + DB_NAME):
-        database.create_all(app=application)
+    # if not path.exists('flaskr/' + DB_NAME):
+    #     database.create_all(app=application)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
