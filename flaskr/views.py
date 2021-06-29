@@ -20,7 +20,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'development'
+enviroment = 'production'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
