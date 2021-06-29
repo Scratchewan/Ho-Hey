@@ -20,7 +20,7 @@ label_dict = {0: 'Cat', 1: 'Giraffe', 2: 'Sheep',
               3: 'Bat', 4: 'Octopus', 5: 'Camel'}
 graph = tf.get_default_graph()
 
-enviroment = 'production'
+enviroment = 'development'
 
 if enviroment == 'development':
     path = f'flaskr\model_cnn.pkl'
@@ -72,18 +72,19 @@ def predict():
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
             image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
-            height = image.shape[0]
-            width = image.shape[1]
-            background = np.zeros([width, width, 3], dtype=np.uint8)
-            background.fill(0)
-            background = Image.fromarray(background)
-            background.paste(Image.fromarray(image),
-                             (0, (int((width-height)/2))))
-            pil_image = background.convert('RGB')
-            open_cv_image = np.array(pil_image)
-            open_cv_image = open_cv_image[:, :, 0].copy()
-            resized = cv2.resize(open_cv_image, (28, 28),
-                                 interpolation=cv2.INTER_AREA)
+            # height = image.shape[0]
+            # width = image.shape[1]
+            # background = np.zeros([width, width, 3], dtype=np.uint8)
+            # background.fill(0)
+            # background = Image.fromarray(background)
+            # background.paste(Image.fromarray(image),
+            #                  (0, (int((width-height)/2))))
+            # pil_image = background.convert('RGB')
+            # open_cv_image = np.array(pil_image)
+            # open_cv_image = open_cv_image[:, :, 0].copy()
+            # resized = cv2.resize(open_cv_image, (28, 28),
+            #                      interpolation=cv2.INTER_AREA)
+            resized = cv2.resize(image, (28, 28), interpolation=cv2.INTER_AREA)
             vect = np.asarray(resized, dtype="uint8")
             vect = vect.reshape(1, 1, 28, 28).astype('float32')
             my_prediction = model.predict(vect)
@@ -122,18 +123,19 @@ def grading():
             draw_decoded = base64.b64decode(draw)
             image = np.asarray(bytearray(draw_decoded), dtype="uint8")
             image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
-            height = image.shape[0]
-            width = image.shape[1]
-            background = np.zeros([width, width, 3], dtype=np.uint8)
-            background.fill(0)
-            background = Image.fromarray(background)
-            background.paste(Image.fromarray(image),
-                             (0, (int((width-height)/2))))
-            pil_image = background.convert('RGB')
-            open_cv_image = np.array(pil_image)
-            open_cv_image = open_cv_image[:, :, 0].copy()
-            resized = cv2.resize(open_cv_image, (28, 28),
-                                 interpolation=cv2.INTER_AREA)
+            # height = image.shape[0]
+            # width = image.shape[1]
+            # background = np.zeros([width, width, 3], dtype=np.uint8)
+            # background.fill(0)
+            # background = Image.fromarray(background)
+            # background.paste(Image.fromarray(image),
+            #                  (0, (int((width-height)/2))))
+            # pil_image = background.convert('RGB')
+            # open_cv_image = np.array(pil_image)
+            # open_cv_image = open_cv_image[:, :, 0].copy()
+            # resized = cv2.resize(open_cv_image, (28, 28),
+            #                      interpolation=cv2.INTER_AREA)
+            resized = cv2.resize(image, (28, 28), interpolation=cv2.INTER_AREA)
             vect = np.asarray(resized, dtype="uint8")
             vect = vect.reshape(1, 1, 28, 28).astype('float32')
             my_prediction = model.predict(vect)

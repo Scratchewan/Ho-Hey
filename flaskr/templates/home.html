@@ -7,21 +7,21 @@
 <header class="w3-display-container w3-wide" style="max-width:1500px;" id="home">
 
     <form action="{{ url_for('views.predict')}}" method="POST" enctype="multipart/form-data">
-        <canvas id="canvas">
+        <canvas id="canvas", width="800" height="800">
             <script type="text/javascript">
                 $(document).ready(function () {
-                    var canvas = document.getElementById('canvas'),
-                        context = canvas.getContext('2d');
+                    // var canvas = document.getElementById('canvas'),
+                    //     context = canvas.getContext('2d');
 
-                    window.addEventListener('resize', resizeCanvas, false);
+                    // window.addEventListener('resize', resizeCanvas, false);
 
-                    function resizeCanvas() {
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
+                    // function resizeCanvas() {
+                    //     canvas.width = window.innerWidth;
+                    //     canvas.height = window.innerHeight;
                         drawCanvas();
-                        redraw();
-                    }
-                    resizeCanvas();
+                    //     redraw();
+                    // }
+                    // resizeCanvas();
                 })();
             </script>
         </canvas>
@@ -50,51 +50,51 @@
     <form action="/draw" method="POST">
         <div class="w3-row-padding w3-grayscale">
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team2.jpg" alt="Cat" style="width:100%">
+                <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" style="width:100%">
                 <h3>Gato</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>O gato é um mamífero carnívoro da família dos felídeos, muito popular como animal de estimação.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Cat"
                         name="dict">Desenhar</button>
                 </p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team1.jpg" alt="Giraffe" style="width:100%">
+                <img src="{{ url_for('static', filename='giraffe.jpg') }}" alt="Giraffe" style="width:100%">
                 <h3>Girafa</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>A girafa é um mamífero artiodátilo, ruminante, do gênero Giraffa, da família dos girafídeos.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Giraffe"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team3.jpg" alt="Sheep" style="width:100%">
+                <img src="{{ url_for('static', filename='sheep.jpg') }}" alt="Sheep" style="width:100%">
                 <h3>Ovelha</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>A ovelha é um quadrúpede, mamífero ruminante normalmente mantido para criação.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Sheep"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team4.jpg" alt="Bat" style="width:100%">
+                <img src="{{ url_for('static', filename='bat.jpg') }}" alt="Bat" style="width:100%">
                 <h3>Morcego</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>O morcego é um mamífero da ordem Chiroptera, cujos integrantes apresentam uma fina membrana de pele entre os dedos, a qual se estende até as patas e se conecta às laterais do corpo, formando as asas.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Bat"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team4.jpg" alt="Octopus" style="width:100%">
+                <img src="{{ url_for('static', filename='octopus.jpg') }}" alt="Octopus" style="width:100%">
                 <h3>Polvo</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>O polvos é um molusco marinho da classe Cephalopoda, da ordem Octopoda, possuindo oito braços fortes à volta da boca.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Octopus"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="/w3images/team4.jpg" alt="Camel" style="width:100%">
+                <img src="{{ url_for('static', filename='camel.jpg') }}" alt="Camel" style="width:100%">
                 <h3>Camelo</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p>O camelo é um género de ungulados artiodáctilos (com um par de dedos de apoio em cada pata) que contém duas espécies: o dromedário, de uma corcova, e o bactriano, de duas corcovas.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Camel"
                         name="dict">Desenhar</button></p>
             </div>
@@ -119,14 +119,7 @@
     <!-- About Section -->
     <div class="w3-container w3-padding-32" id="about">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Sobre</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Excepteur sint
-            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        <p>Esta página é parte de um protótipo desenvolvido em âmbito acadêmico que utiliza conceitos práticos de Redes Neurais Convolucionais para classificar imagens. Alguns artefatos do conjunto de dados da ferramenta 'Quick, draw!', desenvolvida pelo Google, foram utilizados para treinar este modelo.</p>
     </div>
 
     <!-- Contact Section -->

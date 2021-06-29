@@ -9,6 +9,9 @@ var curColor = "#FF5733";
 function drawCanvas() {
     canvas = document.getElementById('canvas');
     context = document.getElementById('canvas').getContext("2d");
+    // context.lineWidth = 10;
+    // context.strokeStyle = "#000000";
+    // context.strokeRect(0, 67, 800, 733);
     $('#canvas').mousedown(function (e) {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
@@ -50,6 +53,9 @@ function redraw() {
         context.closePath();
         context.stroke();
     }
+    // context.lineWidth = 10;
+    // context.strokeStyle = "#000000";
+    // context.strokeRect(0, 67, 800, 733);
 }
 
 function save() {

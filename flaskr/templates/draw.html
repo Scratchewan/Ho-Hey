@@ -4,21 +4,21 @@
 {% block content %}
 <header class="w3-display-container w3-wide" style="max-width:1500px;">
     <form action="{{ url_for('views.grading') }}" method="POST" enctype="multipart/form-data">
-        <canvas id="canvas">
+        <canvas id="canvas", width="800" height="800">
             <script type="text/javascript">
                 $(document).ready(function () {
-                    var canvas = document.getElementById('canvas'),
-                        context = canvas.getContext('2d');
+                    // var canvas = document.getElementById('canvas'),
+                    //     context = canvas.getContext('2d');
 
-                    window.addEventListener('resize', resizeCanvas, false);
+                    // window.addEventListener('resize', resizeCanvas, false);
 
-                    function resizeCanvas() {
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
+                    // function resizeCanvas() {
+                    //     canvas.width = window.innerWidth;
+                    //     canvas.height = window.innerHeight;
                         drawCanvas();
-                        redraw();
-                    }
-                    resizeCanvas();
+                    //     redraw();
+                    // }
+                    // resizeCanvas();
                 })();
             </script>
         </canvas>
