@@ -7,7 +7,15 @@
 <header class="w3-display-container w3-wide" style="max-width:1500px;" id="home">
 
     <form action="{{ url_for('views.predict')}}" method="POST" enctype="multipart/form-data">
-        <canvas id="canvas", width="800" height="800">
+        <h1>_</h1>
+        <canvas id="canvas" , width="800" height="800" , style="
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 800px;
+                outline: 5px solid black;">
             <script type="text/javascript">
                 $(document).ready(function () {
                     // var canvas = document.getElementById('canvas'),
@@ -18,7 +26,7 @@
                     // function resizeCanvas() {
                     //     canvas.width = window.innerWidth;
                     //     canvas.height = window.innerHeight;
-                        drawCanvas();
+                    drawCanvas();
                     //     redraw();
                     // }
                     // resizeCanvas();
@@ -32,13 +40,19 @@
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
 
-    <div class="w3-row-padding w3-grayscale">
+    <div class="w3-row-padding w3-grayscale w3-padding-16">
         <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.predict') }}" method="POST"
             enctype="multipart/form-data">
             <input type="hidden" id='url' name="url" value="">
             <div>
-                <input class="w3-button w3-light-grey w3-block" type="submit" value="Descobrir"
-                    onclick="return save();">
+                <input class="w3-button w3-light-grey w3-block" type="submit" value="Descobrir" onclick="return save();">
+            </div>
+        </form>
+        <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.home') }}" method="POST"
+            enctype="multipart/form-data">
+            <input type="hidden" id='url' name="url" value="">
+            <div>
+                <input class="w3-button w3-light-grey w3-block" type="submit" value="Limpar">
             </div>
         </form>
     </div>
@@ -50,7 +64,7 @@
     <form action="/draw" method="POST">
         <div class="w3-row-padding w3-grayscale">
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" style="width:100%">
+                <img src="{{ url_for('static', filename='cat.png') }}" alt="Cat" style="width:50%">
                 <h3>Gato</h3>
                 <p class="w3-opacity">Animal</p>
                 <p>O gato é um mamífero carnívoro da família dos felídeos, muito popular como animal de estimação.</p>
@@ -59,7 +73,7 @@
                 </p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='giraffe.jpg') }}" alt="Giraffe" style="width:100%">
+                <img src="{{ url_for('static', filename='giraffe.png') }}" alt="Giraffe" style="width:50%">
                 <h3>Girafa</h3>
                 <p class="w3-opacity">Animal</p>
                 <p>A girafa é um mamífero artiodátilo, ruminante, do gênero Giraffa, da família dos girafídeos.</p>
@@ -67,7 +81,7 @@
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='sheep.jpg') }}" alt="Sheep" style="width:100%">
+                <img src="{{ url_for('static', filename='sheep.png') }}" alt="Sheep" style="width:50%">
                 <h3>Ovelha</h3>
                 <p class="w3-opacity">Animal</p>
                 <p>A ovelha é um quadrúpede, mamífero ruminante normalmente mantido para criação.</p>
@@ -75,26 +89,30 @@
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='bat.jpg') }}" alt="Bat" style="width:100%">
+                <img src="{{ url_for('static', filename='bat.png') }}" alt="Bat" style="width:50%">
                 <h3>Morcego</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>O morcego é um mamífero da ordem Chiroptera, cujos integrantes apresentam uma fina membrana de pele entre os dedos, a qual se estende até as patas e se conecta às laterais do corpo, formando as asas.</p>
+                <p>O morcego é um mamífero da ordem Chiroptera, cujos integrantes apresentam uma fina membrana de pele
+                    entre os dedos, a qual se estende até as patas e se conecta às laterais do corpo, formando as asas.
+                </p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Bat"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='octopus.jpg') }}" alt="Octopus" style="width:100%">
+                <img src="{{ url_for('static', filename='octopus.png') }}" alt="Octopus" style="width:50%">
                 <h3>Polvo</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>O polvos é um molusco marinho da classe Cephalopoda, da ordem Octopoda, possuindo oito braços fortes à volta da boca.</p>
+                <p>O polvos é um molusco marinho da classe Cephalopoda, da ordem Octopoda, possuindo oito braços fortes
+                    à volta da boca.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Octopus"
                         name="dict">Desenhar</button></p>
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
-                <img src="{{ url_for('static', filename='camel.jpg') }}" alt="Camel" style="width:100%">
+                <img src="{{ url_for('static', filename='camel.png') }}" alt="Camel" style="width:50%">
                 <h3>Camelo</h3>
                 <p class="w3-opacity">Animal</p>
-                <p>O camelo é um gênero de ungulados artiodáctilos (com um par de dedos de apoio em cada pata) que contém duas espécies: o dromedário, de uma corcova, e o bactriano, de duas corcovas.</p>
+                <p>O camelo é um gênero de ungulados artiodáctilos (com um par de dedos de apoio em cada pata) que
+                    contém duas espécies: o dromedário, de uma corcova, e o bactriano, de duas corcovas.</p>
                 <p><button class="w3-button w3-light-grey w3-block" type="submit" value="Camel"
                         name="dict">Desenhar</button></p>
             </div>
@@ -119,7 +137,9 @@
     <!-- About Section -->
     <div class="w3-container w3-padding-32" id="about">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Sobre</h3>
-        <p>Esta página é parte de um protótipo desenvolvido em âmbito acadêmico que utiliza conceitos práticos de Redes Neurais Convolucionais para classificar imagens. Alguns artefatos do conjunto de dados da ferramenta 'Quick, draw!', desenvolvida pelo Google, foram utilizados para treinar este modelo.</p>
+        <p>Esta página é parte de um protótipo desenvolvido em âmbito acadêmico que utiliza conceitos práticos de Redes
+            Neurais Convolucionais para classificar imagens. Alguns artefatos do conjunto de dados da ferramenta 'Quick,
+            draw!', desenvolvida pelo Google, foram utilizados para treinar este modelo.</p>
     </div>
 
     <!-- Contact Section -->

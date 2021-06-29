@@ -65,3 +65,7 @@ function save() {
     image.src = canvas.toDataURL();
     url.value = image.src;
 }
+
+$('#form').submit(function (e) {
+    e.preventDefault();
+});

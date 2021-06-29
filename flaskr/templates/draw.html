@@ -4,7 +4,15 @@
 {% block content %}
 <header class="w3-display-container w3-wide" style="max-width:1500px;">
     <form action="{{ url_for('views.grading') }}" method="POST" enctype="multipart/form-data">
-        <canvas id="canvas", width="800" height="800">
+        <h1>_</h1>
+        <canvas id="canvas" , width="800" height="800" , style="
+                padding-left: 0;
+                padding-right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 800px;
+                outline: 5px solid black;">
             <script type="text/javascript">
                 $(document).ready(function () {
                     // var canvas = document.getElementById('canvas'),
@@ -15,7 +23,7 @@
                     // function resizeCanvas() {
                     //     canvas.width = window.innerWidth;
                     //     canvas.height = window.innerHeight;
-                        drawCanvas();
+                    drawCanvas();
                     //     redraw();
                     // }
                     // resizeCanvas();
@@ -26,7 +34,7 @@
 </header>
 
 <div class="w3-content w3-padding" style="max-width:1564px">
-    <div class="w3-row-padding w3-grayscale">
+    <div class="w3-row-padding w3-grayscale w3-padding-16">
         <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.grading') }}" method="POST"
             enctype="multipart/form-data">
             <input type="hidden" id='url' name="url" value="">
@@ -36,6 +44,17 @@
                     onclick="return save();">
             </div>
         </form>
+        <!-- <form class="w3-col l3 m6 w3-margin-bottom" action="{{ url_for('views.draw') }}" method="POST"
+            enctype="multipart/form-data">
+            <input type="hidden" id='url' name="url" value="">
+            <input type="hidden" name="dict" value="{{ dict }}">
+            <button class="w3-button w3-light-grey w3-block" type="submit" id="RefreshPage">Limpar</button>
+        </form>
+        <script>
+            $('#RefreshPage').click(function () {
+                location.reload();
+            });
+        </script> -->
     </div>
 </div>
 {% endblock %}
